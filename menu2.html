@@ -68,6 +68,7 @@
 					$(e).find("a").first().addClass("checked"); //level 0
 					$(e).children().each(function(j, e1) {
 						if ($(e1).get(0).tagName == "UL") {
+							$(e).prepend('<div class="open">&nbsp;</div>');
 							if ($(e1).children().length > 0) {
 								$(e1).children().each(function(k, e2) {
 									if ($(e2).hasClass('selected')) {
@@ -84,13 +85,15 @@
 										}
 									} else {
 										//hide
-										$(e2).css("display", "none");
+
+										$(e2).parent().fadeOut();
 									}
 								});	
 							}
 						}
 					});
 				} else {
+
 					/*if ($(e).children().length > 0) {
 						$(e).children().each(function(m, e5) {
 							if ($(e5).get(0).tagName == "UL") {
@@ -104,7 +107,16 @@
 		}
 
 		parseMenu();
-
+		$(".open").click(function(e) {
+			e.preventDefault();
+			l("----> "+$(this).siblings('ul').is(':visible'));
+			if ($(this).siblings('ul').is(':visible')) {
+				$(this).siblings("ul").fadeOut();	
+			} else {
+				$(this).siblings("ul").fadeIn();
+			}
+			
+		})
 	});
 </script>
 </html>
