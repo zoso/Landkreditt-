@@ -1,0 +1,148 @@
+
+                            
+        <ul>
+                <li class="selected">
+                        <a href="/ansatte/administrasjon/">Administrasjon</a>
+                    <ul>
+                        <li class="selected">
+                            <a href="/ansatte/administrasjon/okonomi/">Økonomi</a>
+                            <ul>
+                                <li class="active selected">
+                                    <a href="/ansatte/administrasjon/okonomi/eiendomsdrift/">Eiendomsdrift</a>
+                                </li>
+                                <li>
+                                    <a href="/ansatte/administrasjon/okonomi/personal/">Personal</a>
+                                </li>
+                                <li>
+                                    <a href="/ansatte/administrasjon/okonomi/finans/">Finans</a>
+                                </li>
+                                <li>
+                                    <a href="/ansatte/administrasjon/okonomi/regnskap/">Regnskap</a>
+                                 </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="/ansatte/administrasjon/salg-og-kunde/">Salg og Kunde</a>
+                        </li>
+                        <li>
+                            <a href="/ansatte/administrasjon/service-og-kvalitet/">Service og kvalitet</a>
+                        </li>
+                        <li>
+                            <a href="/ansatte/administrasjon/marked--og-forretningsstotte/">Marked og forretningsstøtte</a>
+                        </li>    
+                    </ul>    
+                </li>
+                
+                <li>
+                    <a href="/ansatte/forvaltning/">Forvaltning</a>
+                </li>
+                <li>
+                    <a href="/ansatte/alle-ansatte/">Alle ansatte</a>
+                </li>
+                <li>
+                    <a href="/ansatte/epinova/">Epinova</a>
+                </li>
+    
+        </ul>
+
+        first ul contains menu - ul
+
+        first level li can contain ul - ul li
+
+        second level li can contain ul - ul li ul
+
+        $('li a').click(function (e) {
+            e.preventDefault();
+            var ullist = $(this).parent().children('ul:first');
+            if(ullist.is(':visible')){
+                ullist.hide('slow');
+            } else {
+                ullist.show('slow');
+            }
+        });
+    
+    /* old code 
+
+     $(".submenu > ul > li > ul").children().each(function (i) {
+        //console.log(i + " > " + $(this).text() + " > "+$(this).get(0).tagName);
+        /*if (!$(this).hasClass("selected")) {
+            $(this).css("display", "none");
+        }*/
+        //$(this).hide();
+    });
+
+    //$(".submenu > ul").children().has("ul").css("border", "1px solid #f00");
+
+    //content: " " url(gfx/toggle-expand.png);
+
+    
+
+
+    //check if level 1
+        /*$(".submenu > ul").children("li").each(function(j) {
+            //console.log("-----> "+j+" > " + $(this).children().length+" > "+$(this).get(0).tagName);
+            if ($(this).children().length > 1) {
+                if ($(this).children().find("ul")) {
+                    //$(this).find("ul").addClass("_opened");
+                    $(this).find("ul").hide();
+
+                    //console.log("undermeny");
+                }
+                //console.log("level 1 has submenu");
+            } else {
+                //console.log("level 1 has NO submenu");
+            }
+        });*/
+       
+       
+            
+        
+
+
+        //console.log("active init: " + isActive);
+        /*if ($(".submenu > ul").find("li").hasClass("selected")) {
+           
+        }*/
+
+        /*$('li a').click(function (e) {
+            e.preventDefault();
+            var ullist = $(this).parent().children('ul:first');
+            if (ullist.is(':visible')) {
+                ullist.hide('slow');
+            } else {
+                ullist.show('slow');
+            }
+        });*/
+
+        //console.log("subs " + $(".submenu li:has(ul)").length);
+
+        /*
+        var listItems = $(".submenu ul li");
+        //console.log(">>>> listItems > " + listItems.length);
+        var active = listItems.filter('.active');
+        var selected = listItems.filter('.selected');
+        */
+        //console.log("active list: " + active.length + " > " + selected.length);
+    
+        /*
+
+
+
+        $(".submenu ul").children("li").each(function (i) {
+            //console.log("ul found -> "+i+" > "+$(this).get(0).tagName+" > "+$(this).text());
+            if ($(this).hasClass("selected")) {
+                //console.log("--> selected " + $(this).find("a:first").text());
+                //console.log("----> have submenu -> " + $(this).find("ul").children().length);
+                if ( $(this).find("ul").children().length > 0) {
+                    //$(this).find("ul").addClass("outline");
+                }
+                //$(this).removeClass("active").addClass("iconExpand");
+            }
+
+            $(this).find("ul").each(function (j) {
+                //$(this).hide();
+            });
+        });*/
+        //$(".submenu > ul > li a").css(":after", "' ----- '");
+
+        */

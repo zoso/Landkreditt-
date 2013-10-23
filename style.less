@@ -1,0 +1,33 @@
+body {
+	font-size: 12px;
+	font-family: Verdana;
+}
+
+.submenu {
+	ul {
+		li {
+
+		}
+		li.selected {
+			background: #eee;
+			ul {
+				li.selected {
+					background: #ddd;
+					ul {
+						li.selected {
+							background: #ccc;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+.checked {
+	font-weight: bold;
+}
+
+.open {
+	font-style: italic;
+}

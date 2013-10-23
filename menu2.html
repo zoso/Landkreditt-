@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+		<meta charset="UTF-8">
+		<title>Menuparser</title>
+		<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<h3>Menu</h3>
+	<div class="submenu">			
+		<ul>
+			<li class="selected">
+				<a href="#">Administrasjon</a>
+				<ul>
+					<li class="">
+						<a href="#">Økonomi</a>
+						<ul>
+							<li>
+								<a href="#">Eiendomsdrift</a>
+							</li>
+							<li class="active ">
+								<a href="#">Personal</a>
+							</li>
+								<li>
+								<a href="#">Finans</a>
+							</li>
+								<li class="selected">
+								<a href="#">Regnskap</a>
+							</li>
+						</ul>
+					</li>
+				<li>
+					<a href="#">Salg og Kunde</a>
+				</li>
+				<li class="selected">
+					<a href="#">Service og kvalitet</a>
+				</li>
+				<li>
+					<a href="#">Marked og forretningsstøtte</a>
+				</li>
+			</ul>
+			</li>
+			<li>
+				<a href="#">Forvaltning</a>
+			</li>
+			<li>
+				<a href="#">Alle ansatte</a>
+			</li>
+			<li>
+				<a href="#">Epinova</a>
+			</li>
+		</ul>
+	</div>
+</body>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script>
+	$(document).ready(function() {
+		function l(s) {
+			console.log(s);
+		}
+
+		function parseMenu() {
+			var m = $(".submenu");
+			var ul = $(".submenu > ul");
+			
+			ul.children().each(function(i, e) {
+				//check if li has children of type ul and class selected
+				if ($(e).hasClass("selected")) {
+					$(e).find("a").first().addClass("checked"); //level 0
+					$(e).children().each(function(j, e1) {
+						if ($(e1).get(0).tagName == "UL") {
+							if ($(e1).children().length > 0) {
+								$(e1).children().each(function(k, e2) {
+									if ($(e2).hasClass('selected')) {
+										$(e2).find("a").first().addClass("checked"); //level 1
+										if ($(e2).children().length > 0) {
+											$(e2).find('ul').children().each(function(m, e3) {
+												if ($(e3).hasClass('selected')) {
+													$(e3).find("a").first().addClass('checked'); //level 2
+												}
+											})
+										}
+									}
+								});	
+							}
+						}
+					});
+				}
+				
+			});
+		}
+
+		parseMenu();
+
+	});
+</script>
+</html>
