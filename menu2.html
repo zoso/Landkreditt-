@@ -18,13 +18,13 @@
 							<li>
 								<a href="#">Eiendomsdrift</a>
 							</li>
-							<li class="active ">
+							<li class="selected active ">
 								<a href="#">Personal</a>
 							</li>
 								<li>
 								<a href="#">Finans</a>
 							</li>
-								<li class="selected">
+								<li class="">
 								<a href="#">Regnskap</a>
 							</li>
 						</ul>
@@ -32,7 +32,7 @@
 				<li>
 					<a href="#">Salg og Kunde</a>
 				</li>
-				<li class="selected">
+				<li class="">
 					<a href="#">Service og kvalitet</a>
 				</li>
 				<li>
@@ -40,7 +40,7 @@
 				</li>
 			</ul>
 			</li>
-			<li>
+			<li class="">
 				<a href="#">Forvaltning</a>
 			</li>
 			<li>
@@ -62,7 +62,6 @@
 		function parseMenu() {
 			var m = $(".submenu");
 			var ul = $(".submenu > ul");
-			
 			ul.children().each(function(i, e) {
 				//check if li has children of type ul and class selected
 				if ($(e).hasClass("selected")) {
@@ -77,14 +76,28 @@
 											$(e2).find('ul').children().each(function(m, e3) {
 												if ($(e3).hasClass('selected')) {
 													$(e3).find("a").first().addClass('checked'); //level 2
+												} else {
+													//hide
+													//$(e3).css("display", "none");
 												}
 											})
 										}
+									} else {
+										//hide
+										$(e2).css("display", "none");
 									}
 								});	
 							}
 						}
 					});
+				} else {
+					/*if ($(e).children().length > 0) {
+						$(e).children().each(function(m, e5) {
+							if ($(e5).get(0).tagName == "UL") {
+								$(e5).children().css("display", "none");
+							}
+						});
+					}*/
 				}
 				
 			});
