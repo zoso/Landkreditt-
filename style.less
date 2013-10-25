@@ -33,13 +33,29 @@ li {
 
 }
 
+.test:before {
+	content: "(";
+}
+.test:after {
+	content: ")";
+}
+
 .open {
 	background: url(toggle-expand.png) no-repeat;
 	height: 16px;
 	width: 16px;
 	display:inline-block;
+	cursor: pointer;
+	position: absolute;
+	left: 200px;
 }
 
 .close {
-
+	background: url(toggle-close.png) no-repeat;
+	height: 16px;
+	width: 16px;
+	display: inline-block;
+	cursor: pointer;
+	position: absolute;
+	left: 200px;
 }

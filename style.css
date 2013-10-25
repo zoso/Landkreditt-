@@ -2,4 +2,7 @@ body{font-size:12px;font-family:Verdana}
 li{list-style:none}
 .submenu ul li.selected{background:#eee}.submenu ul li.selected ul li.selected{background:#ddd}.submenu ul li.selected ul li.selected ul li.selected{background:#ccc}
 .checked{font-weight:bold}
-.open{background:url(toggle-expand.png) no-repeat;height:16px;width:16px;display:inline-block}
+.test:before{content:"("}
+.test:after{content:")"}
+.open{background:url(toggle-expand.png) no-repeat;height:16px;width:16px;display:inline-block;cursor:pointer;position:absolute;left:200px}
+.close{background:url(toggle-close.png) no-repeat;height:16px;width:16px;display:inline-block;cursor:pointer;position:absolute;left:200px}

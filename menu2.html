@@ -12,7 +12,7 @@
 			<li class="selected">
 				<a href="#">Administrasjon</a>
 				<ul>
-					<li class="">
+					<li class="selected">
 						<a href="#">Økonomi</a>
 						<ul>
 							<li>
@@ -42,6 +42,13 @@
 			</li>
 			<li class="">
 				<a href="#">Forvaltning</a>
+				<ul>
+					<li>ewfwef</li>
+					<li>wefwefw</li>
+					<li>wefwef</li>
+					<li>wefwefw</li>
+					<li>wefwefwe</li>
+				</ul>
 			</li>
 			<li>
 				<a href="#">Alle ansatte</a>
@@ -51,6 +58,7 @@
 			</li>
 		</ul>
 	</div>
+	<div class="test">hello</div>
 </body>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script>
@@ -59,61 +67,70 @@
 			console.log(s);
 		}
 
-		function parseMenu() {
-			var m = $(".submenu");
-			var ul = $(".submenu > ul");
-			ul.children().each(function(i, e) {
-				//check if li has children of type ul and class selected
-				if ($(e).hasClass("selected")) {
-					$(e).find("a").first().addClass("checked"); //level 0
-					$(e).children().each(function(j, e1) {
-						if ($(e1).get(0).tagName == "UL") {
-							$(e).prepend('<div class="open">&nbsp;</div>');
-							if ($(e1).children().length > 0) {
-								$(e1).children().each(function(k, e2) {
-									if ($(e2).hasClass('selected')) {
-										$(e2).find("a").first().addClass("checked"); //level 1
-										if ($(e2).children().length > 0) {
-											$(e2).find('ul').children().each(function(m, e3) {
-												if ($(e3).hasClass('selected')) {
-													$(e3).find("a").first().addClass('checked'); //level 2
-												} else {
-													//hide
-													//$(e3).css("display", "none");
-												}
-											})
-										}
-									} else {
-										//hide
+		var MenuTree = {
+			collapse: function(el) {
+				el.toggle();
+			},
+			open: function() {
+				$('a', '.submenu ul').each(function(i, elm) {
+					var $a = $(this);
+					var $li1 = $a.parent();
 
-										$(e2).parent().fadeOut();
-									}
-								});	
-							}
+					if ($li1.hasClass('selected')) {
+						//l("hello "+i+" > "+$(elm).text());
+						$(elm).addClass("checked");
+					} else {
+						
+					}
+
+					if ($a.next().is('ul')) {
+						var $ul = $a.next();
+						var $li2 = $ul.children();
+						if($li2.length>1) {
+							$li2.each(function(j, e2){
+								/*if ($(e2).hasClass('selected')) {
+									$(e2).addClass('checked');
+								}*/
+							});
 						}
-					});
-				} else {
-
-					/*if ($(e).children().length > 0) {
-						$(e).children().each(function(m, e5) {
-							if ($(e5).get(0).tagName == "UL") {
-								$(e5).children().css("display", "none");
-							}
+						$a.click(function(e) {
+							e.preventDefault();
+							MenuTree.collapse($ul);
+							$a.toggleClass("checked");
 						});
-					}*/
-				}
-				
-			});
+					}
+				});
+			},
+			check: function() {
+				$('li', '.submenu ul').each(function(i, elm) {
+					var $li = $(this);
+					var $a = $li.children();
+
+					if ($li.hasClass('selected')) {
+						//l("> "+$a.first().text());
+						$a.first().addClass('checked');
+
+					} else {
+
+					}
+				});
+			}
 		}
 
-		parseMenu();
+		MenuTree.open();
+
+		
+
+		//parseMenu();
 		$(".open").click(function(e) {
 			e.preventDefault();
-			l("----> "+$(this).siblings('ul').is(':visible'));
+			
 			if ($(this).siblings('ul').is(':visible')) {
-				$(this).siblings("ul").fadeOut();	
+				$(this).siblings("ul").fadeOut();
+				$(this).removeClass("close").addClass("open");
 			} else {
 				$(this).siblings("ul").fadeIn();
+				$(this).removeClass("open").addClass("close");
 			}
 			
 		})
