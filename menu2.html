@@ -9,16 +9,16 @@
 	<h3>Menu</h3>
 	<div class="submenu">			
 		<ul>
-			<li class="selected">
+			<li class="">
 				<a href="#">Administrasjon</a>
 				<ul>
-					<li class="selected">
+					<li class="">
 						<a href="#">Økonomi</a>
 						<ul>
 							<li>
 								<a href="#">Eiendomsdrift</a>
 							</li>
-							<li class="selected active ">
+							<li class=" active ">
 								<a href="#">Personal</a>
 							</li>
 								<li>
@@ -40,7 +40,7 @@
 				</li>
 			</ul>
 			</li>
-			<li class="">
+			<li class="selected">
 				<a href="#">Forvaltning</a>
 				<ul>
 					<li>ewfwef</li>
@@ -58,7 +58,6 @@
 			</li>
 		</ul>
 	</div>
-	<div class="test">hello</div>
 </body>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script>
@@ -74,44 +73,28 @@
 			open: function() {
 				$('a', '.submenu ul').each(function(i, elm) {
 					var $a = $(this);
-					var $li1 = $a.parent();
-
-					if ($li1.hasClass('selected')) {
-						//l("hello "+i+" > "+$(elm).text());
-						$(elm).addClass("checked");
-					} else {
+					var $li = $a.parent();
+					if ($li.hasClass('selected')) {
 						
+						$(elm).addClass("checked");
+
+					} else {
+						$li.children().each(function(x1, ex1) {
+							if ($(ex1).get(0).tagName == "UL") {
+								MenuTree.collapse($(ex1));
+							}
+						});
 					}
 
 					if ($a.next().is('ul')) {
 						var $ul = $a.next();
-						var $li2 = $ul.children();
-						if($li2.length>1) {
-							$li2.each(function(j, e2){
-								/*if ($(e2).hasClass('selected')) {
-									$(e2).addClass('checked');
-								}*/
-							});
-						}
+						var $li1 = $ul.children();
+						
 						$a.click(function(e) {
 							e.preventDefault();
 							MenuTree.collapse($ul);
 							$a.toggleClass("checked");
 						});
-					}
-				});
-			},
-			check: function() {
-				$('li', '.submenu ul').each(function(i, elm) {
-					var $li = $(this);
-					var $a = $li.children();
-
-					if ($li.hasClass('selected')) {
-						//l("> "+$a.first().text());
-						$a.first().addClass('checked');
-
-					} else {
-
 					}
 				});
 			}
